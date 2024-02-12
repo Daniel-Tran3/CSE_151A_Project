@@ -1,10 +1,7 @@
-## CSE_151A_Project
-CSE 151A Project
-
 ## Project Objective
 In this project, we will be exploring an apartment rental dataset and building a model to predict rental prices.
 
-**Preprocessing Approach**\
+### Preprocessing Approach
 We want to ensure the integrity of our data, in order to achieve a high level of accuracy when modelling. These are some of the steps we have taken:
 
 **Handling Missing Values**\
