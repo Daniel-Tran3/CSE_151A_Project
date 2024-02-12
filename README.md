@@ -1,5 +1,5 @@
 ## Project Objective
-In this project, we will be exploring an apartment rental dataset and building a model to predict rental prices.
+In this project, we will be exploring an apartment rental [dataset] (https://github.com/Daniel-Tran3/CSE_151A_Project/blob/main/apartments_for_rent_classified_10K_utf.csv) and building a model to predict rental prices.
 
 ### Preprocessing Approach
 We want to ensure the integrity of our data, in order to achieve a high level of accuracy when modelling. These are some of the steps we have taken:
@@ -26,3 +26,5 @@ For textual data in title and body, we plan to clean up by removing special char
 Ensuring all columns are of the correct data type is a priority, including accurately converting boolean fields and validating the consistency of numerical fields.
 
 This preprocessing strategy ensures our dataset is primed for analysis and detailed exploration (including modeling), focusing on cleanliness, structure, and readiness for in-depth exploration. It lays the groundwork for robust and insightful data-driven models and findings. 
+
+Our project can be found [here](https://github.com/Daniel-Tran3/CSE_151A_Project/blob/main/CSE151A_Group_Project.ipynb).
