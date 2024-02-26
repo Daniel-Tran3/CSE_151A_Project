@@ -39,7 +39,9 @@ The training MAE ended at 242.2971, the testing MAE ended at 272.6906.\
 Both of those are reasonable values for the data and the difference between them is insignificant, so there is no clear indication of either overfitting or underfitting, which is a good result because that means the model is capable of interpreting data that it has not seen before effectively.
 
 **Fitting graph**\
-Here are some graphs of the model's predictions versus the actual data:\
+Here are some graphs of the model's predictions versus the actual data:
+
+**Test Set**:\
 <img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/dbb2a16d-861d-440b-8341-b925344238e1" width="500">
 <img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/e92d6a24-73f1-4639-a22e-bb4c2551af1a" width="500">
 <div align = "center">
@@ -54,7 +56,22 @@ Same 3 graphs but zoomed in to avoid outliers for better display:
 <img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/83a1b621-1bfd-4605-8344-a8200a9ff45d" width="600">
 </div>
 
-The fitted graphs and their zoomed-in versions, although not directly viewable here, highlight the model's accuracy, particularly in matching a significant portion of the data points with their expected values, and wisely predicting average values for outliers rather than overfitting. Our analysis, especially the ReLU activation function's success, underscores the linear relationship between apartment features and rental prices. This foundational work paves the way for future explorations with logistic classification and SVMs, aiming for even more nuanced understandings and predictions of rental price fairness.
+**Train Set**:\
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/aee82c14-9a61-4b43-a4bf-40922272a187" width="500">
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/ace19504-5897-49b4-85d4-8ec0cdfd3732" width="500">
+<div align = "center">
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/98ed01b3-6e83-458a-b9ea-84986d019f2c" width="600">
+</div>
+
+**Validation Set**:\
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/07aa396c-d0e9-489b-ac13-525a505afaff" width="500">
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/a3f95083-7463-4ccd-bd17-077dee09faad" width="500">
+<div align = "center">
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/bd6417bb-c215-40dc-a9b9-b55b1d09c6e4" width="600">
+</div>
+
+
+The fitted graphs highlight the model's accuracy, particularly in matching a significant portion of the data points with their expected values, and wisely predicting average values for outliers rather than overfitting. Our analysis, especially the ReLU activation function's success, underscores the linear relationship between apartment features and rental prices. This foundational work paves the way for future explorations with logistic classification and SVMs, aiming for even more nuanced understandings and predictions of rental price fairness.
 
 The training set, being the foundation of our model's learning, showed a strong correlation between features and rental prices, validating our feature selection and engineering approach. The validation set, on the other hand, served as a critical test of the model's generalizability, confirming that our model can indeed predict unseen data points with commendable accuracy. This dual success lays a solid groundwork for our future investigations into more sophisticated models and techniques, aiming to refine our predictions and insights into the dynamics of rental pricing.
 
