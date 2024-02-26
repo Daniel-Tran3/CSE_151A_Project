@@ -63,12 +63,32 @@ Same 3 graphs but zoomed in to avoid outliers for better display:
 <img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/98ed01b3-6e83-458a-b9ea-84986d019f2c" width="600">
 </div>
 
+Same 3 graphs but zoomed in to avoid outliers for better display:
+
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/4835d3b4-1d65-4d0e-ab27-1d896ebedb03" width="500">
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/197aa860-f3af-4123-9787-0f1292179338" width="500">
+<div align = "center">
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/d02c7f01-d3ad-41ae-b72f-bb25d80a27fa" width="600">
+</div>
+
 **Validation Set**:\
 <img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/07aa396c-d0e9-489b-ac13-525a505afaff" width="500">
 <img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/a3f95083-7463-4ccd-bd17-077dee09faad" width="500">
 <div align = "center">
 <img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/bd6417bb-c215-40dc-a9b9-b55b1d09c6e4" width="600">
 </div>
+
+Same 3 graphs but zoomed in to avoid outliers for better display:
+
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/5ff45ece-1ba7-40c1-9dbc-d71a5a3563db" width="500">
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/92f12bcf-58bb-4f81-9a3b-eb8207204056" width="500">
+<div align = "center">
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/809ab985-573c-4a64-9670-88c7db047d08" width="600">
+</div>
+
+
+
+
 
 
 The fitted graphs highlight the model's accuracy, particularly in matching a significant portion of the data points with their expected values, and wisely predicting average values for outliers rather than overfitting. Our analysis, especially the ReLU activation function's success, underscores the linear relationship between apartment features and rental prices. This foundational work paves the way for future explorations with logistic classification and SVMs, aiming for even more nuanced understandings and predictions of rental price fairness.
