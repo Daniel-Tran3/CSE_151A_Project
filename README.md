@@ -54,7 +54,11 @@ Same 3 graphs but zoomed in to avoid outliers for better display:
 <img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/83a1b621-1bfd-4605-8344-a8200a9ff45d" width="600">
 </div>
 
-Given how much the points overlap, that is a good indicator that the model is accurate since a lot of the datapoints match their expectations. Furthermore, there are some outliers in the actual data that the model did not predict correctly, instead predicting a more average value, which is once again a good sign in the sense that the model did not overfit on the data.
+The fitted graphs and their zoomed-in versions, although not directly viewable here, highlight the model's accuracy, particularly in matching a significant portion of the data points with their expected values, and wisely predicting average values for outliers rather than overfitting. Our analysis, especially the ReLU activation function's success, underscores the linear relationship between apartment features and rental prices. This foundational work paves the way for future explorations with logistic classification and gradient boosting machines, aiming for even more nuanced understandings and predictions of rental price fairness.
+
+The training set, being the foundation of our model's learning, showed a strong correlation between features and rental prices, validating our feature selection and engineering approach. The validation set, on the other hand, served as a critical test of the model's generalizability, confirming that our model can indeed predict unseen data points with commendable accuracy. This dual success lays a solid groundwork for our future investigations into more sophisticated models and techniques, aiming to refine our predictions and insights into the dynamics of rental pricing.
+
+
 
 **Next 2 models**\
 Logistic Classification: For the next model, we aim to create a classification model (most likely a logistic one) that can recognize the fairness/unfairness of apartment prices, which is a more unique task.
