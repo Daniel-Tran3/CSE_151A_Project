@@ -47,7 +47,9 @@ Here are some graphs of the model's predictions versus the actual data:\
 Given how much the points overlap, that is a good indicator that the model is accurate since a lot of the datapoints match their expectations. Furthermore, there are some outliers in the actual data that the model did not predict correctly, instead predicting a more average value, which is once again a good sign in the sense that the model did not overfit on the data.
 
 **Next 2 models**\
-Linear Regression: **TODO**
+Logistic Classification: For the next model, we aim to create a classification model (most likely a logistic one) that can recognize the fairness/unfairness of apartment prices, which is a more unique task.
+To do this, we will add a new label to all of the entries in the table, called "fair", and then create copies of each entry with the price inflated by a random value (1.5x-2.5x), with the label "unfair".
+Our logistic model will then train itself on the updated dataset.
 
 Gradient boosting machine: **TODO**
 
