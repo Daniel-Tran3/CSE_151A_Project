@@ -65,7 +65,8 @@ Logistic Classification: For the next model, we aim to create a classification m
 To do this, we will add a new label to all of the entries in the table, called "fair", and then create copies of each entry with the price inflated by a random value (1.5x-2.5x), with the label "unfair".
 Our logistic model will then train itself on the updated dataset.
 
-Gradient boosting machine: **TODO**
+Support Vector Machine: Like the logistic classification model, we also intend to use a support vector machine to classify prices as fair and unfair.
+We will use the above-described method to create and add "unfair" entries to the table. The support vector machine will then create a separating margin between the "fair" and "unfair" classes.
 
 **Conclusion**\
 The first model used one hidden layer, with 24 units for each layer except the output and a ReLU activation function for all of them. Based on the loss function numbers described earlier in the training vs test error section, the results are reasonably accurate. This is reinforced by the graphs which demonstrate that in the vast majority of cases the predicted prices overlap with the actual prices and ignore outliers, which means that the model is accurate and was not overfitted to the data. This result makes sense because ReLU is a linear function. In the data, having a larger apartment area, more bathrooms, bedrooms, or amenities would usually correlate to a higher rent price. Therefore, a ReLU function is likely the best activation function for the data because of the near linear relationship between the variables.\
