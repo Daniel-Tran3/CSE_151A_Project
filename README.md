@@ -40,9 +40,19 @@ Both of those are reasonable values for the data and the difference between them
 
 **Fitting graph**\
 Here are some graphs of the model's predictions versus the actual data:\
-![image](https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/dbb2a16d-861d-440b-8341-b925344238e1)
-![image](https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/e92d6a24-73f1-4639-a22e-bb4c2551af1a)
-![image](https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/8630b83f-9242-4ee4-ba53-1333689f5e35)
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/dbb2a16d-861d-440b-8341-b925344238e1" width="500">
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/e92d6a24-73f1-4639-a22e-bb4c2551af1a" width="500">
+<div align = "center">
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/8630b83f-9242-4ee4-ba53-1333689f5e35" width="600">
+</div>
+
+Same 3 graphs but zoomed in to avoid outliers for better display:
+
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/03320355-9f0d-47ce-8596-54ee56b9334f" width="500">
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/e5daccca-8566-47f7-b0bc-13dcfd8622d1" width="500">
+<div align = "center">
+<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/83a1b621-1bfd-4605-8344-a8200a9ff45d" width="600">
+</div>
 
 Given how much the points overlap, that is a good indicator that the model is accurate since a lot of the datapoints match their expectations. Furthermore, there are some outliers in the actual data that the model did not predict correctly, instead predicting a more average value, which is once again a good sign in the sense that the model did not overfit on the data.
 
