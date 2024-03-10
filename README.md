@@ -29,85 +29,63 @@ This preprocessing strategy ensures our dataset is primed for analysis and detai
 
 ---
 
-### First Model
+### (See Milestone 3 branch README for Model 1 Summary)
 Colab link to the first model: <a target="_blank" href="https://colab.research.google.com/github/Daniel-Tran3/CSE_151A_Project/blob/main/Model_1.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
-**Training vs test error**\
-The training MAE ended at 242.2971, the testing MAE ended at 272.6906.\
-Both of those are reasonable values for the data and the difference between them is insignificant, so there is no clear indication of either overfitting or underfitting, which is a good result because that means the model is capable of interpreting data that it has not seen before effectively.
+### Model 2 - Logistic Classification
+Colab link to second model:<a target="_blank" href="https://colab.research.google.com/github/Daniel-Tran3/CSE_151A_Project/blob/main/Model_2_Pre.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
+**Evaluation of data, labels and loss function.**\
+As we decided to co-opt our first model, the ANN that predicts rental prices given a dataset, we did some additional preprocessing.
+We began by using our model to give predicted prices, assumed to be the baseline for "fairness" as an aggregate over many data points.
+We then compared these prices to the original listed prices, assigning the original listed prices as "unfair" if they were 1.3x
+more expensive than our model's predictions or "fair" otherwise - our two new labels.
+Finally, we updated our loss function to be binary cross entropy, since we were performing binary classification.
+
+**Training vs test error / fitting graph**\
+As our second model was a binary classification model instead of a regression model, we switched our measurement of error from
+MSE to precision and recall.
+After using 10-fold cross-validation (explained in further detail below), we found that precision averaged 
+0.92 and recall averaged 0.95 on the training data, while precision and recall both averaged 0.8 on the training set.
+(More below, under "Fitting graph")
 
 **Fitting graph**\
 Here are some graphs of the model's predictions versus the actual data:
 
-**Test Set**:\
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/dbb2a16d-861d-440b-8341-b925344238e1" width="500">
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/e92d6a24-73f1-4639-a22e-bb4c2551af1a" width="500">
-<div align = "center">
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/8630b83f-9242-4ee4-ba53-1333689f5e35" width="600">
-</div>
+<Insert graphs here>
 
-Same 3 graphs but zoomed in to avoid outliers for better display:
+Compared to our previous model's accuracy, this model seemed to weaken a bit due to overfitting.
+While the testing results weren't entirely inaccurate, it is clear from the much-higher training accuracy that 
+our model is too specialized to the training data. This is one aspect that we seek to improve for our next classification model.
 
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/03320355-9f0d-47ce-8596-54ee56b9334f" width="500">
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/e5daccca-8566-47f7-b0bc-13dcfd8622d1" width="500">
-<div align = "center">
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/83a1b621-1bfd-4605-8344-a8200a9ff45d" width="600">
-</div>
+**Hyperparameter tuning and K-fold Cross validation**\
+We decided to perform hyperparameter tuning and 10-fold cross validation, as mentioned above.
+The hyper-parameter tuning allowed us to test multiple activation functions, units, and optimizers.
+The results of the hyper-parameter tuning gave the following optimal hyperparameters:
+12 units per hidden layer, Adadelta optimizer, 0.9 learning rate, and relu activation functions.
 
-**Train Set**:\
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/aee82c14-9a61-4b43-a4bf-40922272a187" width="500">
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/ace19504-5897-49b4-85d4-8ec0cdfd3732" width="500">
-<div align = "center">
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/98ed01b3-6e83-458a-b9ea-84986d019f2c" width="600">
-</div>
+The relu activation function is of particular interest, as it aligns with what we found in Model 1 and further 
+confirms that the relationship between the majority of our features and predicted price is linear.
 
-Same 3 graphs but zoomed in to avoid outliers for better display:
+We also decided to include cross-validation to test for over/underfitting, and (as previously mentioned), 
+overfitting was indeed present.
 
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/4835d3b4-1d65-4d0e-ab27-1d896ebedb03" width="500">
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/197aa860-f3af-4123-9787-0f1292179338" width="500">
-<div align = "center">
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/d02c7f01-d3ad-41ae-b72f-bb25d80a27fa" width="600">
-</div>
-
-**Validation Set**:\
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/07aa396c-d0e9-489b-ac13-525a505afaff" width="500">
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/a3f95083-7463-4ccd-bd17-077dee09faad" width="500">
-<div align = "center">
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/bd6417bb-c215-40dc-a9b9-b55b1d09c6e4" width="600">
-</div>
-
-Same 3 graphs but zoomed in to avoid outliers for better display:
-
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/5ff45ece-1ba7-40c1-9dbc-d71a5a3563db" width="500">
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/92f12bcf-58bb-4f81-9a3b-eb8207204056" width="500">
-<div align = "center">
-<img src="https://github.com/Daniel-Tran3/CSE_151A_Project/assets/44418360/809ab985-573c-4a64-9670-88c7db047d08" width="600">
-</div>
-
-
-
-
-
-
-The fitted graphs highlight the model's accuracy, particularly in matching a significant portion of the data points with their expected values, and wisely predicting average values for outliers rather than overfitting. Our analysis, especially the ReLU activation function's success, underscores the linear relationship between apartment features and rental prices. This foundational work paves the way for future explorations with logistic classification and SVMs, aiming for even more nuanced understandings and predictions of rental price fairness.
-
-The training set, being the foundation of our model's learning, showed a strong correlation between features and rental prices, validating our feature selection and engineering approach. The validation set, on the other hand, served as a critical test of the model's generalizability, confirming that our model can indeed predict unseen data points with commendable accuracy. This dual success lays a solid groundwork for our future investigations into more sophisticated models and techniques, aiming to refine our predictions and insights into the dynamics of rental pricing.
-
-
-
-**Next 2 models**\
-Logistic Classification: For the next model, we aim to create a classification model (most likely a logistic one) that can recognize the fairness/unfairness of apartment prices, which is a more unique task.
-To do this, we will add a new label to all of the entries in the table, called "fair", and then create copies of each entry with the price inflated by a random value (1.5x-2.5x), with the label "unfair".
-Our logistic model will then train itself on the updated dataset.
-
-Support Vector Machine: Like the logistic classification model, we also intend to use a support vector machine to classify prices as fair and unfair.
-We will use the above-described method to create and add "unfair" entries to the table. The support vector machine will then create a separating margin between the "fair" and "unfair" classes.
+**Next model**\
+Support Vector Machine: Like the logistic classification model, we also intend to use a support vector machine to classify prices as fair and unfair. We want to see if an SVM will have less overfitting than the logistic classification neural network.
+We will keep the above-described method to create and add "unfair" entries to the table. The support vector machine will then create a separating margin between the "fair" and "unfair" classes.
 
 **Conclusion**\
-The first model used one hidden layer, with 24 units for each layer except the output and a ReLU activation function for all of them. Based on the loss function numbers described earlier in the training vs test error section, the results are reasonably accurate. This is reinforced by the graphs which demonstrate that in the vast majority of cases the predicted prices overlap with the actual prices and ignore outliers, which means that the model is accurate and was not overfitted to the data. This result makes sense because ReLU is a linear function. In the data, having a larger apartment area, more bathrooms, bedrooms, or amenities would usually correlate to a higher rent price. Therefore, a ReLU function is likely the best activation function for the data because of the near linear relationship between the variables.\
-To possibly improve the model, it could be reasonable to run a more extensive keras tuner for more trials that is focused on the ReLU function specifically and only alters the number of layers, the learning rate and the number of units. We could then see if our current choice of a single hidden layer and 24 units could be tuned to be a better fit for the data.  
+The second model used the results of the first model to label each entry as a "fair" or "unfair" price, assuming that our model
+correctly predicts a "fair" price for an apartment by using the aggregate of all of the initial data. It then uses
+hyperparameter tuning to obtain a logistic classification model with the best parameters across number of units, optimizer,
+learning rate, and activation functions (specific valud above, in "Hyperparameter tuning and K-fold Cross validation"). 
+
+We then used 10-fold cross validation to check for overfitting, which was unfortunately present in our model. Despite this, our model
+still achieves passable precision and recall on testing data. However, we wish to improve these values further in our next SVM model.
 
 ---
 Our project can be found here: 
