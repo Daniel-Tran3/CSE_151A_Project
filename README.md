@@ -47,14 +47,19 @@ more expensive than our model's predictions or "fair" otherwise - our two new la
 Finally, we updated our loss function to be binary cross entropy, since we were performing binary classification.
 
 **Training vs test error / fitting graph**\
-As our second model was a binary classification model instead of a regression model, we switched our measurement of error from
-MSE to precision and recall.
+As our second model was a binary classification model instead of a regression model, we switched our measurement of error from MSE to precision and recall.
 After using 10-fold cross-validation (explained in further detail below), we found that precision averaged 
-0.92 and recall averaged 0.95 on the training data, while precision and recall both averaged 0.8 on the training set.
-(More below, under "Fitting graph")
+0.87 and recall averaged 0.95 on the training data, while precision averaged 0.77 and recall averaged 0.80 on the training set. Additionally, accuracy averaged 0.85 on the training set and 0.7 on the testing set.
+
+It should be noted that the cross-validation iteration graphs were slightly different than the training, testing, and validation (not included in K-cross-fold) results from predicting once on each set of data.
+
+These predictions gave precisions of 0.75 and recalls of 0.99 for class 1.
+For class 0, however, the precisions were 0.66, 0.44, and 0.58 (for training, testing, and validation). The recalls were even worse, at 0.07, 0.04, and 0.07. 
+Clearly, our model has a heavy bias towards classifying apartments as "fair".
+This tendency, and possible explanations, will be discussed later.
 
 **Fitting graph**\
-Here are some graphs of the model's predictions versus the actual data:
+Here are some graphs of the model's training vs. testing metrics for the K-fold cross-validation:
 
 <Insert graphs here>
 
@@ -66,16 +71,22 @@ our model is too specialized to the training data. This is one aspect that we se
 We decided to perform hyperparameter tuning and 10-fold cross validation, as mentioned above.
 The hyper-parameter tuning allowed us to test multiple activation functions, units, and optimizers.
 The results of the hyper-parameter tuning gave the following optimal hyperparameters:
-12 units per hidden layer, Adadelta optimizer, 0.9 learning rate, and relu activation functions.
+18 units per hidden layer, Adadelta optimizer, 0.9 learning rate, and tanh activation functions.
 
-The relu activation function is of particular interest, as it aligns with what we found in Model 1 and further 
-confirms that the relationship between the majority of our features and predicted price is linear.
+One interesting feature we noticed while running the testing was that the accuracy did not seem 
+to vary beyond 0.74 and 0.76 for the entire search - almost as if the actual choices for the 
+above hyperparameters ultimately did not increase the accuracy of the model significantly.
+
+This, along with our end results for class 0 ("unfair") predictions, leads us to conclude that
+logistical classification via a hyperparameter tuning on a neural network is not a good model for
+the task of classifying the fairness of apartment pricing. 
 
 We also decided to include cross-validation to test for over/underfitting, and (as previously mentioned), 
 overfitting was indeed present.
 
 **Next model**\
-Support Vector Machine: Like the logistic classification model, we also intend to use a support vector machine to classify prices as fair and unfair. We want to see if an SVM will have less overfitting than the logistic classification neural network.
+Support Vector Machine: Like the logistic classification model, we also intend to use a support vector machine to classify prices as fair and unfair. We want to see if an SVM will have less overfitting than the logistic classification neural network. 
+We also wish to see if it is better at classifying "unfair" apartment prices, as compared to the logistical classification neural network.
 We will keep the above-described method to create and add "unfair" entries to the table. The support vector machine will then create a separating margin between the "fair" and "unfair" classes.
 
 **Conclusion**\
@@ -85,7 +96,10 @@ hyperparameter tuning to obtain a logistic classification model with the best pa
 learning rate, and activation functions (specific valud above, in "Hyperparameter tuning and K-fold Cross validation"). 
 
 We then used 10-fold cross validation to check for overfitting, which was unfortunately present in our model. Despite this, our model
-still achieves passable precision and recall on testing data. However, we wish to improve these values further in our next SVM model.
+still achieves passable precision and recall on "fair" entries for training, testing, and validation data. 
+That being said, the model almost completely fails to classify "unfair" apartment prices, resulting in essentially random results at best
+and completely incorrect results at worst, due to a bias towards classifying apartments as "fair".
+We wish to improve this aspect of the classification further in our next SVM model.
 
 ---
 Our project can be found here: 
