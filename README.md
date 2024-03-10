@@ -61,7 +61,12 @@ This tendency, and possible explanations, will be discussed later.
 **Fitting graph**\
 Here are some graphs of the model's training vs. testing metrics for the K-fold cross-validation:
 
-<Insert graphs here>
+![image](https://github.com/Daniel-Tran3/CSE_151A_Project/assets/62851286/17713800-f621-42da-b561-2d95fbfe1425)
+
+![image](https://github.com/Daniel-Tran3/CSE_151A_Project/assets/62851286/8e3f8754-cc45-4ad8-84e8-4320c007f34a)
+
+![image](https://github.com/Daniel-Tran3/CSE_151A_Project/assets/62851286/ef40d580-886c-4c29-b042-440331c60db1)
+
 
 Compared to our previous model's accuracy, this model seemed to weaken a bit due to overfitting.
 While the testing results weren't entirely inaccurate, it is clear from the much-higher training accuracy that 
