@@ -43,6 +43,18 @@ This preprocessing strategy ensures our dataset is primed for analysis and detai
 
 ### Model 3
 
+Use final_cleaned data from data preprocessing. Assign labels "Fair" and "Unfair" to each record using the method from Model 2 (if the price is greater than 1.3 * predicted price, then it's unfair)
+
+Then, we tried to analyze top 100 features that contributes most to the classification of fair and unfair. First, we tried use pairplot as discussed in lecture. But since we have 1800+ features, it's impossible to manually analyze the relations of pairplot to select features. Therefore, suggested by ChatGPT, we use RFE.
+
+However, feature selections was later abandoned since selecting features takes much more time to train (way more than if we just fit entire features into SVM).
+
+We trained two SVM: linear and RBF. 
+
+Linear is performing really well that it achieves 100% accuracy on both training and testing data.
+
+RBF, on the other hand, was not that good. It got only about 80% initially. We applied hp tuning to it using GridSearchCV. By tuning two hp C and gamma, we successfully improved its accuracy to the same level of linear.
+
 
 ## Results
 
