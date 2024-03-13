@@ -107,6 +107,8 @@ With hyperparameter tuning, we chose to monitor accuracy on our validation set t
 
 We plotted the model's results using a confusion matrix and followed that up with a comparison of the model's loss + accuracy on training, testing, and validation.
 
+![Test Set Confusion Matrix](/imgs/Model2Confusion.png "Model 2 Confusion Matrix on Test Set")
+
 To wrap up, we ensured our model's ability to  generalize by employing k-folds cross validation and plotting precision, recall, and accuracy across each fold. 
 
 We used the following code to accomplish this:
@@ -123,12 +125,6 @@ scores = cross_validate(estimator, X_train, y_train, cv=kfold, n_jobs=1, return_
 ```
 
 As you can see, we are training for 100 epochs and getting 3 metrics for each fold. Overall, we were satisfied with the results of the cross-validation, as precision and recall on the test sets hovered above 0.75 and the accuracy was close to 70%.
-
-![kfold Precision Graph](/imgs/kfoldPrecision.png "kfold cross-val Precision Results")
-
-![kfold Recall Graph](/imgs/kfoldRecall.png "kfold cross-val Recall Results")
-
-![kfold Accuracy Graph](/imgs/kfoldAccuracy.png "kfold cross-val Accuracy Results")
 
 ### Model 3
 
