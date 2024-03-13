@@ -47,15 +47,15 @@ A random sample of 5 rows from this data without the hundreds of one-hot encoded
 +------+-------------+------------+---------------+------------+------------------+
 |      |   bathrooms |   bedrooms |   square_feet | fairness   |   unscaled_price |
 +======+=============+============+===============+============+==================+
-| 9428 |         2.5 |          3 |    0.043159   | fair       |             1325 |
+|  811 |           1 |          0 |    0.00949898 | fair       |              495 |
 +------+-------------+------------+---------------+------------+------------------+
-|  309 |         1   |          1 |    0.00626582 | fair       |              600 |
+| 2191 |           1 |          1 |    0.013083   | fair       |             1145 |
 +------+-------------+------------+---------------+------------+------------------+
-| 3674 |         1   |          2 |    0.015464   | fair       |             1119 |
+| 6788 |           1 |          2 |    0.0225319  | fair       |             2200 |
 +------+-------------+------------+---------------+------------+------------------+
-| 8537 |         2   |          3 |    0.0303015  | fair       |             3333 |
+| 5243 |           1 |          1 |    0.0181959  | fair       |             1191 |
 +------+-------------+------------+---------------+------------+------------------+
-| 8319 |         2   |          2 |    0.028898   | unfair     |             2400 |
+| 1444 |           1 |          1 |    0.0112534  | fair       |              515 |
 +------+-------------+------------+---------------+------------+------------------+
 
 Using apartment features such as bedroom and bathroom counts, square footage, and location, we want to make a prediction on whether or not the apartment would be listed for a fair or unfair price. From our table with fairness labels, we created training, test, and validation sets. We used 80% of the data for training and took 20% of that to use as validation data.
@@ -122,7 +122,13 @@ scores = cross_validate(estimator, X_train, y_train, cv=kfold, n_jobs=1, return_
 
 ```
 
-As you can see, we are training for 100 epochs and getting 3 metrics for each fold. Overall, we were satisfied with the results of the cross-validation, as precision and recall on the test sets hovered above 0.75 and the accuracy was close to 70%. 
+As you can see, we are training for 100 epochs and getting 3 metrics for each fold. Overall, we were satisfied with the results of the cross-validation, as precision and recall on the test sets hovered above 0.75 and the accuracy was close to 70%.
+
+![kfold Precision Graph](/imgs/kfoldPrecision.png "kfold cross-val Precision Results")
+
+![kfold Recall Graph](/imgs/kfoldRecall.png "kfold cross-val Recall Results")
+
+![kfold Accuracy Graph](/imgs/kfoldAccuracy.png "kfold cross-val Accuracy Results")
 
 ### Model 3
 
