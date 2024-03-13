@@ -40,6 +40,89 @@ This preprocessing strategy ensures our dataset is primed for analysis and detai
 ### Model 1
 
 ### Model 2
+Since we want to use our first model to make the distinction between fair and unfair monthly rents, we load that model along with out cleaned dataset. We take a subset of the data that doesn't include the price and time columns and make price predcitions for every apartment in the dataset. We create a new dataframe with these price predictions and ground truth prices. We made the choice to classify apartments with a listed monthly rent that is 30% more expensive than the predicted price as unfair (otherwise it is a fair price). These new labels are used to train the second model.
+
+A random sample of 5 rows from this data without the hundreds of one-hot encoded features is shown below.
+
++------+-------------+------------+---------------+------------+------------------+
+|      |   bathrooms |   bedrooms |   square_feet | fairness   |   unscaled_price |
++======+=============+============+===============+============+==================+
+| 9428 |         2.5 |          3 |    0.043159   | fair       |             1325 |
++------+-------------+------------+---------------+------------+------------------+
+|  309 |         1   |          1 |    0.00626582 | fair       |              600 |
++------+-------------+------------+---------------+------------+------------------+
+| 3674 |         1   |          2 |    0.015464   | fair       |             1119 |
++------+-------------+------------+---------------+------------+------------------+
+| 8537 |         2   |          3 |    0.0303015  | fair       |             3333 |
++------+-------------+------------+---------------+------------+------------------+
+| 8319 |         2   |          2 |    0.028898   | unfair     |             2400 |
++------+-------------+------------+---------------+------------+------------------+
+
+Using apartment features such as bedroom and bathroom counts, square footage, and location, we want to make a prediction on whether or not the apartment would be listed for a fair or unfair price. From our table with fairness labels, we created training, test, and validation sets. We used 80% of the data for training and took 20% of that to use as validation data.
+
+Using Keras, we created a logistic regressor using 5 dense hidden layers. Each hidden layer, save for the first, had a variable number of nodes and possible activation functions that were tweaked during the hyperparameter tuning process. Additionally, we played around with different optimizers like Stochastic Gradient Descent, Adam, and Adadelta (a variation of SGD).
+
+Here is the code snipper of how we constructed this model:
+
+```
+
+def call_existing_code(units, optimizer_candidate, activation, lr):
+  model = keras.Sequential()
+  model.add(layers.Dense(units=16, activation=activation, input_dim=X_train.shape[1]))
+  model.add(layers.Dense(units=units, activation=activation))
+  model.add(layers.Dense(units=units, activation=activation))
+  model.add(layers.Dense(units=units, activation=activation))
+  model.add(layers.Dense(units=units, activation=activation))
+  model.add(layers.Dense(1, activation="sigmoid"))
+  if (optimizer_candidate=="SGD"):
+    optimizer=SGD(lr)
+  elif (optimizer_candidate=="Adam"):
+    optimizer=Adam(lr)
+  elif (optimizer_candidate=="Adadelta"):
+    optimizer=Adadelta(lr)
+  else:
+    optimizer=optimizer_candidate
+  model.compile(
+      optimizer=optimizer,
+      loss="binary_crossentropy",
+      metrics=["accuracy"],
+  )
+  return model
+
+# Build model, using hyperparameters to choose options and use function above to build model
+def build_model(hp):
+  units = hp.Int("units", min_value=6, max_value=18, step=6)
+  activation = hp.Choice("activation", ["relu", "tanh", "sigmoid"])
+  lr = hp.Float("lr", min_value=0.1, max_value=0.9, step=0.4, sampling="linear")
+  optimizer= hp.Choice("optimizer", ["SGD", "Adam", "Adadelta"])
+  # call existing model-building code with the hyperparameter values.
+  model = call_existing_code(
+      units=units, optimizer_candidate=optimizer, activation=activation, lr=lr
+  )
+  return model
+
+```
+
+With hyperparameter tuning, we chose to monitor accuracy on our validation set to gauge performance of different hyperparams. From 81 trials, we found that 18 units per hidden layer, Adadelta optimization, tanh activations, and a 0.9 learning rate yields the best results, achieving an accuracy of 76.81% on the validation data. 
+
+We plotted the model's results using a confusion matrix and followed that up with a comparison of the model's loss + accuracy on training, testing, and validation.
+
+To wrap up, we ensured our model's ability to  generalize by employing k-folds cross validation and plotting precision, recall, and accuracy across each fold. 
+
+We used the following code to accomplish this:
+
+```
+
+estimator = KerasClassifier(model=hp_model, epochs=100    batch_size=100, verbose=0)  
+kfold=RepeatedKFold(n_splits=10, n_repeats=1) 
+
+# Perform cross validation with metrics of accuracy and MSE (cross_validate only accepts neg MSE)
+scoring = ['accuracy', 'precision', 'recall']
+scores = cross_validate(estimator, X_train, y_train, cv=kfold, n_jobs=1, return_train_score=True, scoring=scoring, verbose=0)
+
+```
+
+As you can see, we are training for 100 epochs and getting 3 metrics for each fold. Overall, we were satisfied with the results of the cross-validation, as precision and recall on the test sets hovered above 0.75 and the accuracy was close to 70%. 
 
 ### Model 3
 
