@@ -8,9 +8,15 @@ For our project, we are using a dataset that contains apartment rental informati
 In this project, we will be exploring an apartment rental [dataset](https://github.com/Daniel-Tran3/CSE_151A_Project/blob/main/apartments_for_rent_classified_10K_utf.csv) and building a model to predict rental prices.
 
 ### Data Exploration
-During the data exploration phase of our project, which focused on apartment rental information across the United States, we delved into a dataset rich with features like price, amenities, location, and room counts. This phase was foundational for our subsequent modeling efforts, providing crucial insights that shaped our approach to data preprocessing and feature engineering. As we explored the dataset, the initial challenge was identifying the features most relevant to our objective: predicting rental prices and their fairness. This process involved a thorough examination of the dataset to understand the characteristics and distribution of each feature, including numerical fields like price, square footage, and categorical fields such as location and amenities. We wanted to ensure the integrity of our data, in order to achieve a high level of accuracy when modelling. What follows below are the preprocessing steps we took to address the issues that arose during our exploration of the data.
+During the data exploration phase of our project, which focused on apartment rental information across the United States, we delved into a dataset rich with features like price, amenities, location, and room counts. This phase was foundational for our subsequent modeling efforts, providing crucial insights that shaped our approach to data preprocessing and feature engineering. As we explored the dataset, the initial challenge was identifying the features most relevant to our objective: predicting rental prices and their fairness. This process involved a thorough examination of the dataset to understand the characteristics and distribution of each feature, including numerical fields like price, square footage, and categorical fields such as location and amenities. 
 
-### Preprocessing Approach (Change as needed)
+We found that the amenities were stored as a list of the different amenities, that there were a massive number of cities and states to keep track of, and that (perhaps most importantly) the price listings were not consistent - some were listed in monthly fees, while others were listed as weekly fees.
+We wanted to ensure the integrity of our data, in order to achieve a high level of accuracy when modelling. What follows below are the preprocessing steps we took to address the issues that arose during our exploration of the data.
+
+### Preprocessing Approach 
+Colab link to the preprocessing notebook: <a target="_blank" href="https://github.com/Daniel-Tran3/CSE_151A_Project/blob/main/Data_Preprocessing.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 
 **Handling Missing Values**\
 Handling missing values was a critical step in our data exploration. We adopted strategies tailored to the nature of each field—for categorical fields like amenities, we used placeholders like "None" to fill gaps, ensuring that our models could still leverage these features without introducing bias. For numerical fields such as bathrooms and bedrooms, we opted for median imputation, a choice that preserved the overall distribution of these features while addressing missingness.
@@ -23,6 +29,7 @@ Encoding categorical variables was another area of focus. Location data, encompa
 
 **Normalization**\
 Normalization of numerical fields like price and square feet ensured consistency across the dataset, preventing scale differences from skewing our models' performance. This uniformity was crucial for models sensitive to feature scale, enabling them to learn more effectively from the data.
+We also converted all weekly prices to what the price would be per-month, to ensure that all apartments were measured on the same scale.
 
 **Outlier Management**\
 Outlier management was also a key consideration. We carefully analyzed price and square footage for outliers, employing strategies such as capping or removal to mitigate their impact. This approach was critical for maintaining the dataset's quality, ensuring that our models learned from representative trends rather than being influenced by extreme values.
