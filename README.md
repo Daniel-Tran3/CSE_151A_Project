@@ -254,10 +254,6 @@ Colab link to the third model: <a target="_blank" href="https://colab.research.g
 
 ### Discussion
 
-
-
-
-
 ### Conclusion
 
 ## Context
@@ -266,6 +262,10 @@ In attempting to predict the fairness of apartment rental prices, we developed t
 ## For the Future
 Our project is a good start in laying the foundations for further exploration in market price predicition. We can further our research by attempting to integrating other advanced machine learning techniques such as Geospatial Analysis which employs geospatial models to account the proximity of each apartment to neigbouring amenities and facilities. 
 
+### Collaboration
+Vincent Ren (Code writer & reviewer): Mainly contributed model 3, and reviewed some other code
+Zhuji Zhang (Code writer): Mainly contributed on the data preprocessing, and some parts of the writeup
+Sinclair Lim (Writer): Mainly contributed to README, and also contributed to direction of project, models
 
 
 Our project can be found here: 
