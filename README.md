@@ -246,7 +246,23 @@ Colab link to the third model: <a target="_blank" href="https://colab.research.g
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
+**Linear Kernel SVM**
+The linear kernel, as mentioned before, performed quite well. On the testing, training, and validation sets, it achieved near-perfect accuracy with almost 0 error.
+![image](https://github.com/Daniel-Tran3/CSE_151A_Project/assets/62851286/02445232-2905-4b0f-9721-9578b501449a)
+![image](https://github.com/Daniel-Tran3/CSE_151A_Project/assets/62851286/96593e06-be90-489f-ae0c-a79d969eb623)
+![image](https://github.com/Daniel-Tran3/CSE_151A_Project/assets/62851286/f5d03000-9414-4982-8ea2-c8873e349cf5)
 
+
+
+**RBF Kernel SVM**
+The RBF kernel, as mentioned before, required some preprocessing. Prior to hyperparameter tuning, the testing, training, and validation error looked akin to that of 
+the simple logistic classification model. (See below)
+
+![image](https://github.com/Daniel-Tran3/CSE_151A_Project/assets/62851286/a937c9f9-3231-44aa-a1b6-aa005f387f0a)
+![image](https://github.com/Daniel-Tran3/CSE_151A_Project/assets/62851286/8083b4ab-719b-48d3-a31d-4c39a08efd66)
+![image](https://github.com/Daniel-Tran3/CSE_151A_Project/assets/62851286/514d582c-df02-4598-87be-b89b32cf063c)
+
+After application of hyperparameter tuning, however, the testing, training, and validation error looked closer to that of the linear SVM.
 
 
 ### Discussion
