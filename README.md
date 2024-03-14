@@ -277,12 +277,15 @@ After application of hyperparameter tuning, however, the testing, training, and 
 ### Conclusion
 
 #### - Context
-In attempting to predict the fairness of apartment rental prices, we developed three different models, where the first predicts rental prices, the second predicting price fairness (using logistic regression), and the third also predicting price fairness (but using SVM). 
+In attempting to predict the fairness of apartment rental prices, we developed three different models, where the first predicts rental prices, the second predicting price fairness (using logistic classification), and the third also predicting price fairness (but using SVM). <br>
+As our results showed, when using the first model to give us fair data points and comparing those to real-world prices, the SVM performs much better than logistic classification, even when using hyperparameter tuning for both.
 
 #### - For the Future
 Our project is a good start in laying the foundations for further exploration in market price predicition. We can further our research by attempting to integrating other advanced machine learning techniques such as Geospatial Analysis which employs geospatial models to account the proximity of each apartment to neigbouring amenities and facilities. <br>
 
 Further, given the time, we can also come up with a website that publishes our results on specific neighbourhoods so that potential renters would be able to access our data and analysis to make a better and more informed decision for their next apartment hunt. 
+
+Were we to redo this project with more time and the experience that we have now, we'd also like to consider bringing in additional data and coming up with newer, more professional ways of classifying "fairness" and "unfairness" - for example, having experts in the field, such as realtors, rate apartment prices beforehand.
 
 ### Collaboration
 Vincent Ren (Code writer & reviewer): Mainly contributed model 3, and reviewed some other code <br>
