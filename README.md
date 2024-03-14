@@ -256,10 +256,10 @@ Colab link to the third model: <a target="_blank" href="https://colab.research.g
 
 ### Conclusion
 
-## Context
+#### Context
 In attempting to predict the fairness of apartment rental prices, we developed three different models, where the first predicts rental prices, the second predicting price fairness (using logistic regression), and the third also predicting price fairness (but using SVM). 
 
-## For the Future
+#### For the Future
 Our project is a good start in laying the foundations for further exploration in market price predicition. We can further our research by attempting to integrating other advanced machine learning techniques such as Geospatial Analysis which employs geospatial models to account the proximity of each apartment to neigbouring amenities and facilities. 
 
 ### Collaboration
