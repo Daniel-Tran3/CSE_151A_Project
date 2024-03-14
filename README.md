@@ -10,25 +10,22 @@ In this project, we will be exploring an apartment rental [dataset](https://gith
 ### Data Exploration
 
 ### Preprocessing Approach (Change as needed)
-We want to ensure the integrity of our data, in order to achieve a high level of accuracy when modelling. These are some of the steps we have taken:
+During the data exploration phase of our project, which focused on apartment rental information across the United States, we delved into a dataset rich with features like price, amenities, location, and room counts. This phase was foundational for our subsequent modeling efforts, providing crucial insights that shaped our approach to data preprocessing and feature engineering. As we explored the dataset, the initial challenge was identifying the features most relevant to our objective: predicting rental prices and their fairness. This process involved a thorough examination of the dataset to understand the characteristics and distribution of each feature, including numerical fields like price, square footage, and categorical fields such as location and amenities. We wanted to ensure the integrity of our data, in order to achieve a high level of accuracy when modelling. These are some of the steps we have taken:
 
 **Handling Missing Values**\
-We addressed missing values by filling categorical fields like amenities and pets_allowed with "None" or a similar placeholder. For numeric fields such as bathrooms and bedrooms, we used the median to fill in the gaps, preserving the data distribution.
+Handling missing values was a critical step in our data exploration. We adopted strategies tailored to the nature of each field—for categorical fields like amenities, we used placeholders like "None" to fill gaps, ensuring that our models could still leverage these features without introducing bias. For numerical fields such as bathrooms and bedrooms, we opted for median imputation, a choice that preserved the overall distribution of these features while addressing missingness.
 
 **Feature Engineering**\
-We transformed the amenities field into multiple binary columns, each indicating the presence or absence of specific amenities. This approach allows a more detailed analysis of amenities' effects on rentals.
+Feature engineering emerged as a vital component of our exploration. The amenities feature, in particular, underwent transformation into multiple binary columns, each indicating the presence or absence of specific amenities. This granular approach allowed us to assess the impact of individual amenities on rental prices more accurately.
 
 **Encoding Categorical Variables**\
-In order to simplify our dataset, categorical variables including currency and price_type have be converted to one-hot encoded vectors, eliminating the introduction of arbitrary numeric relationships. This ensures a clearer relationship and conclusion.
+Encoding categorical variables was another area of focus. Location data, encompassing states and cities, was one-hot encoded to prevent the introduction of arbitrary numerical relationships. This step was essential for maintaining the dataset's integrity and ensuring that our models could interpret these features without undue influence from their encoding scheme.
 
 **Normalization**\
-Numeric fields like price and square_feet will be normalized to ensure uniformity in scale across our dataset, which is crucial for our models' performance.
+Normalization of numerical fields like price and square feet ensured consistency across the dataset, preventing scale differences from skewing our models' performance. This uniformity was crucial for models sensitive to feature scale, enabling them to learn more effectively from the data.
 
 **Outlier Management**\
-We carefully examine price and square_feet for outliers, choosing to cap or remove them based on their severity and impact on the dataset. 
-
-**Text Data Preprocessing**\
-For textual data in title and body, we plan to clean up by removing special characters and standardizing text cases, setting the stage for potential text analysis and feature extraction.
+Outlier management was also a key consideration. We carefully analyzed price and square footage for outliers, employing strategies such as capping or removal to mitigate their impact. This approach was critical for maintaining the dataset's quality, ensuring that our models learned from representative trends rather than being influenced by extreme values.
 
 **Data Types Correction**\
 Ensuring all columns are of the correct data type is a priority, including accurately converting boolean fields and validating the consistency of numerical fields.
@@ -268,6 +265,7 @@ Further, given the time, we can also come up with a website that publishes our r
 Vincent Ren (Code writer & reviewer): Mainly contributed model 3, and reviewed some other code <br>
 Zhuji Zhang (Code writer): Mainly contributed on the data preprocessing, and some parts of the writeup <br>
 Sinclair Lim (Writer): Mainly contributed to README, and also contributed to direction of project, models <br>
+Khyat Doshi (Writer): Contributed to README. Additionally, presented data exploration and some graphs <br>
 
 
 Our project can be found here: 
