@@ -45,7 +45,18 @@ This preprocessing strategy ensures our dataset is primed for analysis and detai
 
 ### Model 1
 
-Using RandomSearch on the activation functions and the number of nodes per hidden layer to find the optimal hyperparameters, we found an optimal model that had 2 hidden layers with 24 nodes each, with the ReLu activation function. Then we trained the model over 100 epochs.
+Our first model, which was to be a regression model used in our later two models, was relatively simple and did not involve as many steps
+as later models did.
+
+To construct our regression model, we used hyperparameter tuning with the following hyperparameters: number of units per hidden layer, activation
+function (on every layer except the output layer), and optimizer. 
+Using RandomSearch on the activation functions and the number of nodes per hidden layer to find the optimal hyperparameters, we found an optimal model that had 2 hidden layers with 24 nodes each, with the ReLu activation function. Then we trained the model over 100 epochs, tracking and
+graphing the loss and validation loss (measured using MSE) over all 100 epochs. We also compared our model's predicted prices to the true prices
+in various fitting graphs, as shown in the "Results" section.
+
+The code for this model can be found here: <a target="_blank" href="https://colab.research.google.com/github/Daniel-Tran3/CSE_151A_Project/blob/main/Model_1.ipynb">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 
 ### Model 2
 
@@ -137,9 +148,13 @@ scores = cross_validate(estimator, X_train, y_train, cv=kfold, n_jobs=1, return_
 
 As you can see, we are training for 100 epochs and getting 3 metrics for each fold. Overall, we were satisfied with the results of the cross-validation, as precision and recall on the test sets hovered above 0.75 and the accuracy was close to 70%.
 
+The code for this model can be found here: <a target="_blank" href="https://colab.research.google.com/github/Daniel-Tran3/CSE_151A_Project/blob/main/Model_2_Pre.ipynb">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
 ### Model 3
 
-Use final_cleaned data from data preprocessing. Assign labels "Fair" and "Unfair" to each record using the method from Model 2 (if the price is greater than 1.3 \* predicted price, then it's unfair)
+First, we assigned labels "Fair" and "Unfair" to each record using the method from Model 2 (if the price is greater than 1.3 \* predicted price, then it's unfair).
 
 Then, we tried to analyze top 100 features that contributes most to the classification of fair and unfair. First, we tried use pairplot as discussed in lecture. But since we have 1800+ features, it's impossible to manually analyze the relations of pairplot to select features. Therefore, suggested by ChatGPT, we use RFE.
 
@@ -147,9 +162,13 @@ However, feature selections was later abandoned since selecting features takes m
 
 We trained two SVM: linear and RBF.
 
-Linear is performing really well that it achieves 100% accuracy on both training and testing data.
+Using the linear kernel gave highly optimal results, to the point where we decided any further tuning was unnecessary.
 
-RBF, on the other hand, was not that good. It got only about 80% initially. We applied hp tuning to it using GridSearchCV. By tuning two hp C and gamma, we successfully improved its accuracy to the same level of linear.
+RBF, on the other hand, was not that good. Thus, we applied hp tuning to it using GridSearchCV. By tuning two hp C and gamma, we successfully improved its accuracy to roughly the same level of linear.
+
+The code for this third model can be found here: <a target="_blank" href="https://colab.research.google.com/github/Daniel-Tran3/CSE_151A_Project/blob/main/Model3.ipynb">
+<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 
 ## Results
 
@@ -287,24 +306,48 @@ In our preprocessing approach, we took several steps to ensure that our data was
 
 In Model 1, we were trying to figure out the best activation functions for our data and for our model’s goal. Model 1 had the goal of predicting the rental prices of apartments given all the details of the unit such as number of bathrooms, bedrooms, amenities, etc. After building our model we settled on the ReLU activation function as this provided the best results which isn’t surprising due to the linear relationship our data set has. From the fitted graphs of Model 1, we can see that our model does a great job at being fairly accurate. Our model doesn’t discriminate, rather it keeps predicted values at a fairly average point to prevent overfitting. Furthermore, the training set, being the foundation of our model's learning, showed a strong correlation between features and rental prices, validating our feature selection and engineering approach. The validation set, on the other hand, served as a critical test of the model's generalizability, confirming that our model can indeed predict unseen data points with commendable accuracy. This dual success lays a solid groundwork for our future investigations into more sophisticated models and techniques, aiming to refine our predictions and insights into the dynamics of rental pricing. <br>
 
-In Model 2, we took the results from Model 1 to predict the price of an apartment unit given all the features and amenities it has. Afterwards, we take our predicted price and compare it to the ground truth price to decide whether or not the listed price is fair or not. For our price prediction, we decided to declare that listed prices 30% over the predicted price is considered unfair. Our group wanted to choose an arbitrary point that was neither too high nor too low. We decided that 1.5x was too unrealistic as a minimum value and any point lower than 1.3x such as 1.1x would be too close to the actual fair values. From Model 2, we noticed that the predictions of fairness tended to fall under the “fair” category. We believe that this is because … <br>
+In Model 2, we took the results from Model 1 to predict the price of an apartment unit given all the features and amenities it has. Afterwards, we take our predicted price and compare it to the ground truth price to decide whether or not the listed price is fair or not. For our price prediction, we decided to declare that listed prices 30% over the predicted price is considered unfair. Our group wanted to choose an arbitrary point that was neither too high nor too low. We decided that 1.5x was too unrealistic as a minimum value and any point lower than 1.3x such as 1.1x would be too close to the actual fair values. From Model 2, we noticed that the predictions of fairness tended to fall under the “fair” category. Our first guess was that this was because of the way that we selected our labels - in accordance with our original project description, 
+we used our first model as a baseline for "fairness" and then classified the testing data we were given. This may have introduced difficulties 
+in the classification, since our original model was designed to predict prices that were relatively close to the original dataset we were given.
+Our other guess, dependent on the results of model 3, was that the logistic classification neural network was simply ill-suited for the task
+we gave it, since it did not improve regardless of hyperparameter tuning - the accuracy never got much higher or lower than 0.74. If the SVM
+performed better, we would assume that the problem was simply that the issue lay in our logistic classification model, rather than our data.<br>
 
-In Model 3, we initially attempted to analyze which top 100 features most contribute the price to being classified as fair and unfair. However, we ran into multiple issues as our quantity of features was simply too much and too time consuming for pairplots and recursive feature elimination (RFE). We then decided to fit our features into an SVM and proceed with our data exploration that way. The linear kernel SVM had little to no error in its accuracy on both training and testing data, while the RBF kernel SVM required hyperparameter tuning to achieve similar results to the linear kernel SVM. Because our data had pretty defined linear relationships, it is clear as to why the linear kernel SVM didn’t struggle much with outputting a near perfect accuracy score. On the other hand, because RBF kernel SVMs thrive much better under non-linear data, that particular model required severe tuning of the gamma and regularization parameter to reach accuracy scores similar to its counterpart. <br>
+In Model 3, we initially attempted to analyze which top 100 features most contribute the price to being classified as fair and unfair. However, we ran into multiple issues as our quantity of features was simply too much and too time consuming for pairplots and recursive feature elimination (RFE). We then decided to fit sll of our features into our SVM and proceed that way. The linear kernel SVM had little to no error in its accuracy on both training and testing data, while the RBF kernel SVM required hyperparameter tuning to achieve similar results to the linear kernel SVM. Because our data had pretty defined linear relationships, it is clear as to why the linear kernel SVM didn’t struggle much with outputting a near perfect accuracy score. On the other hand, because RBF kernel SVMs thrive much better under non-linear data, that particular model required severe tuning of the gamma and regularization parameter to reach accuracy scores similar to its counterpart. Interestingly,
+thie SVM did not suffer the same classification issues as the hyperparameter-tuned logistic classification neural network, implying that
+the second hypothesis was correct - our logistic classification model must have had some underlying issues that caused it to perform poorly 
+on our dataset. However, with limited time and limited experience with diagnosing issues with neural networks, we decided that we would leave
+the determining of the precise issues for the future, as discussed in our "Conclusion" section. <br>
 
 ### Conclusion
 
-#### - Context
+#### - Summary
 
-In attempting to predict the fairness of apartment rental prices, we developed three different models, where the first predicts rental prices, the second predicting price fairness (using logistic classification), and the third also predicting price fairness (but using SVM). <br>
-As our results showed, when using the first model to give us fair data points and comparing those to real-world prices, the SVM performs much better than logistic classification, even when using hyperparameter tuning for both.
+In attempting to predict the fairness of apartment rental prices, we developed three different models. The first predicts rental prices, 
+given features such as area, number of bathrooms/bedrooms, and location. The second takes the predicted prices of the first model and assigns
+the original dataset's prices as either "fair" or "unfair" dependending on if they were within an acceptable margin of the predicted "fair" 
+prices. It then used a logistic classification neural network to classify prices as fair or unfair given the same features as the first model,
+as well as price. The third model used the same setup as the second to determine fairness or unfairness, but used SVM instead of logistic
+classification to classify new data. <br>
+
+As demonstrated by our results, the first model proved to be exceedingly accurate at matching the data given by the original dataset, achieving
+high accuracy after hyperparameter tuning. The second model, unfortunately, was struck by problems that we ended up being unable to find within
+the timeframe we were given to work. These issues resulted in extremely poor classification of unfair values. Our third model, fortunately, proved
+to be much better at classifying the data, indicating that the problem was indeed with our second model and not with our data. <br>
+
 
 #### - For the Future
 
-Our project is a good start in laying the foundations for further exploration in market price predicition. We can further our research by attempting to integrating other advanced machine learning techniques such as Geospatial Analysis which employs geospatial models to account the proximity of each apartment to neigbouring amenities and facilities. <br>
+Were we to have more time on this project, the most urgent issue that we'd like to explore is what caused our second model to fail where our 
+third model succeeded. For instance, we could try adding more parameters to our hyperparameter tuning, such as adding more layers and
+using more complicated techniques. <br>
 
-Further, given the time, we can also come up with a website that publishes our results on specific neighbourhoods so that potential renters would be able to access our data and analysis to make a better and more informed decision for their next apartment hunt.
+Were we to redo this project with more time and more options for our data, we'd also like to consider bringing in additional data and coming up with newer, more professional ways of classifying "fairness" and "unfairness" - for example, having experts in the field, such as realtors, rate apartment prices beforehand. <br>
 
-Were we to redo this project with more time and the experience that we have now, we'd also like to consider bringing in additional data and coming up with newer, more professional ways of classifying "fairness" and "unfairness" - for example, having experts in the field, such as realtors, rate apartment prices beforehand.
+Our project is a good start in laying the foundations for further exploration in market price prediction. We can further our research by attempting to integrating other advanced machine learning techniques such as Geospatial Analysis which employs geospatial models to account the proximity of each apartment to neigbouring amenities and facilities. <br>
+
+Further, given the time, we can also come up with a website that publishes our results on specific neighbourhoods so that potential renters would be able to access our data and analysis to make a better and more informed decision for their next apartment hunt. <br>
+
 
 ### Collaboration
 
@@ -313,9 +356,11 @@ Zhuji Zhang (Code writer): Mainly contributed on the data preprocessing, and som
 Aleck Wu (Code writer and reviewer): Preprocessing, building models, reviewing code mainly in model 1 and 2 <br>
 Sinclair Lim (Writer): Mainly contributed to README, and also contributed to direction of project, models <br>
 Khyat Doshi (Writer): Contributed to README. Additionally, presented data exploration and some graphs <br>
-Rohan Duvur: (Code writer & reviewer); mainly contributed code for model 2 along with its section in the final writeup. Some annotations for preprocessing. <br>
+Rohan Duvur (Code writer & reviewer): mainly contributed code for model 2 along with its section in the final writeup. Some annotations for preprocessing. <br>
 Oleg Bychenkov (Coding, writer): Coding for data exploration/preprocessing, created the graphs and analysis for model 1. <br>
 Harry Tang (Code writer & Writer): Contributed to some parts of model 1 and wrote the Discussion portion of the final writeup. <br>
+Daniel Tran (Code writer and Writer): Proposed original idea, attended TA office hours to smooth out details, added code to construct graphs
+for models 1, 2, and 3. Wrote bulk of analysis for models 2 and 3.
 
 Our project can be found here:
 <a target="_blank" href="https://colab.research.google.com/github/Daniel-Tran3/CSE_151A_Project/blob/main/CSE151A_Group_Project.ipynb">
