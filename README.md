@@ -306,6 +306,7 @@ Zhuji Zhang (Code writer): Mainly contributed on the data preprocessing, and som
 Aleck Wu (Code writer and reviewer): Preprocessing, building models, reviewing code mainly in model 1 and 2 <br>
 Sinclair Lim (Writer): Mainly contributed to README, and also contributed to direction of project, models <br>
 Khyat Doshi (Writer): Contributed to README. Additionally, presented data exploration and some graphs <br>
+Rohan Duvur: code writer & reviewer; mainly contributed code for model 2 along with its section in the final writeup. Some annotations for model 1. <br>
 
 Our project can be found here:
 <a target="_blank" href="https://colab.research.google.com/github/Daniel-Tran3/CSE_151A_Project/blob/main/CSE151A_Group_Project.ipynb">
