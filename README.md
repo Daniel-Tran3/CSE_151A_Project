@@ -54,31 +54,21 @@ Since we want to use our first model to make the distinction between fair and un
 
 A random sample of 5 rows from this data without the hundreds of one-hot encoded features is shown below.
 
+```
 +------+-------------+------------+---------------+------------+------------------+
-
 |      |   bathrooms |   bedrooms |   square_feet | fairness   |   unscaled_price |
-
 +======+=============+============+===============+============+==================+
-
-|  811 |           1 |          0 |    0.00949898 | fair       |              495 |
-
+| 3533 |           1 |          1 |     0.0151382 | fair       |             1000 |
 +------+-------------+------------+---------------+------------+------------------+
-
-| 2191 |           1 |          1 |    0.013083   | fair       |             1145 |
-
+| 4414 |           1 |          2 |     0.016642  | fair       |              725 |
 +------+-------------+------------+---------------+------------+------------------+
-
-| 6788 |           1 |          2 |    0.0225319  | fair       |             2200 |
-
+| 7063 |           2 |          2 |     0.023359  | unfair     |             3739 |
 +------+-------------+------------+---------------+------------+------------------+
-
-| 5243 |           1 |          1 |    0.0181959  | fair       |             1191 |
-
+| 2591 |           1 |          1 |     0.0137597 | fair       |              906 |
 +------+-------------+------------+---------------+------------+------------------+
-
-| 1444 |           1 |          1 |    0.0112534  | fair       |              515 |
-
+| 8942 |           1 |          1 |     0.034462  | unfair     |             1771 |
 +------+-------------+------------+---------------+------------+------------------+
+```
 
 Using apartment features such as bedroom and bathroom counts, square footage, and location, we want to make a prediction on whether or not the apartment would be listed for a fair or unfair price. From our table with fairness labels, we created training, test, and validation sets. We used 80% of the data for training and took 20% of that to use as validation data.
 
