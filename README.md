@@ -55,17 +55,29 @@ Since we want to use our first model to make the distinction between fair and un
 A random sample of 5 rows from this data without the hundreds of one-hot encoded features is shown below.
 
 +------+-------------+------------+---------------+------------+------------------+
-| | bathrooms | bedrooms | square_feet | fairness | unscaled_price |
+
+|      |   bathrooms |   bedrooms |   square_feet | fairness   |   unscaled_price |
+
 +======+=============+============+===============+============+==================+
-| 811 | 1 | 0 | 0.00949898 | fair | 495 |
+
+|  811 |           1 |          0 |    0.00949898 | fair       |              495 |
+
 +------+-------------+------------+---------------+------------+------------------+
-| 2191 | 1 | 1 | 0.013083 | fair | 1145 |
+
+| 2191 |           1 |          1 |    0.013083   | fair       |             1145 |
+
 +------+-------------+------------+---------------+------------+------------------+
-| 6788 | 1 | 2 | 0.0225319 | fair | 2200 |
+
+| 6788 |           1 |          2 |    0.0225319  | fair       |             2200 |
+
 +------+-------------+------------+---------------+------------+------------------+
-| 5243 | 1 | 1 | 0.0181959 | fair | 1191 |
+
+| 5243 |           1 |          1 |    0.0181959  | fair       |             1191 |
+
 +------+-------------+------------+---------------+------------+------------------+
-| 1444 | 1 | 1 | 0.0112534 | fair | 515 |
+
+| 1444 |           1 |          1 |    0.0112534  | fair       |              515 |
+
 +------+-------------+------------+---------------+------------+------------------+
 
 Using apartment features such as bedroom and bathroom counts, square footage, and location, we want to make a prediction on whether or not the apartment would be listed for a fair or unfair price. From our table with fairness labels, we created training, test, and validation sets. We used 80% of the data for training and took 20% of that to use as validation data.
@@ -306,7 +318,7 @@ Zhuji Zhang (Code writer): Mainly contributed on the data preprocessing, and som
 Aleck Wu (Code writer and reviewer): Preprocessing, building models, reviewing code mainly in model 1 and 2 <br>
 Sinclair Lim (Writer): Mainly contributed to README, and also contributed to direction of project, models <br>
 Khyat Doshi (Writer): Contributed to README. Additionally, presented data exploration and some graphs <br>
-Rohan Duvur: code writer & reviewer; mainly contributed code for model 2 along with its section in the final writeup. Some annotations for model 1. <br>
+Rohan Duvur: (Code writer & reviewer); mainly contributed code for model 2 along with its section in the final writeup. Some annotations for preprocessing. <br>
 Oleg Bychenkov (Coding, writer): Coding for data exploration/preprocessing, created the graphs and analysis for model 1. <br>
 
 Our project can be found here:
