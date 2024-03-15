@@ -218,8 +218,6 @@ The fitted graphs highlight the model's accuracy, particularly in matching a sig
 
 Although this model doesn't tackle the question of fairness directly as we do not measure or evaluate it anywhere in the model, the results demonstrate that it is possible to accurately predict what the prices should be based on the given characteristics. This foundational work paves the way for future explorations with logistic classification and SVMs, aiming for even more nuanced understandings and predictions of rental price fairness.
 
-The training set, being the foundation of our model's learning, showed a strong correlation between features and rental prices, validating our feature selection and engineering approach. The validation set, on the other hand, served as a critical test of the model's generalizability, confirming that our model can indeed predict unseen data points with commendable accuracy. This dual success lays a solid groundwork for our future investigations into more sophisticated models and techniques, aiming to refine our predictions and insights into the dynamics of rental pricing.
-
 ### Second Model
 
 Colab link to the second model: <a target="_blank" href="https://colab.research.google.com/github/Daniel-Tran3/CSE_151A_Project/blob/main/Model_2_Pre.ipynb">
