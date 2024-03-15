@@ -25,20 +25,20 @@ Colab link to the preprocessing notebook: <a target="_blank" href="https://githu
 Handling missing values was a critical step in our data exploration. We adopted strategies tailored to the nature of each field—for categorical fields like amenities, we used placeholders like "None" to fill gaps, ensuring that our models could still leverage these features without introducing bias. For numerical fields such as bathrooms and bedrooms, we opted for median imputation, a choice that preserved the overall distribution of these features while addressing missingness.
 
 **Feature Engineering**\
-Feature engineering emerged as a vital component of our exploration. The amenities feature, in particular, underwent transformation into multiple binary columns, each indicating the presence or absence of specific amenities. This granular approach allowed us to assess the impact of individual amenities on rental prices more accurately.
+Feature engineering emerged as a vital component of our exploration. The amenities feature, in particular, underwent major cleaning and engineering. We first split the amenities using string methods into individual items and put them in a list, then transformed them into multiple binary columns, each indicating the presence or absence of specific amenities. This granular approach allowed us to assess the impact of individual amenities on rental prices more accurately.
 
 **Encoding Categorical Variables**\
 Encoding categorical variables was another area of focus. Location data, encompassing states and cities, was one-hot encoded to prevent the introduction of arbitrary numerical relationships. This step was essential for maintaining the dataset's integrity and ensuring that our models could interpret these features without undue influence from their encoding scheme.
 
 **Normalization**\
-Normalization of numerical fields like price and square feet ensured consistency across the dataset, preventing scale differences from skewing our models' performance. This uniformity was crucial for models sensitive to feature scale, enabling them to learn more effectively from the data.
-We also converted all weekly prices to what the price would be per-month, to ensure that all apartments were measured on the same scale.
+Normalization of numerical fields like price and square feet ensured consistency across the dataset, preventing scale differences from skewing our models' performance. This uniformity was crucial for models sensitive to feature scale, enabling them to learn more effectively from the data. 
+We also converted all weekly prices to what the price would be per-month, to ensure that all apartments were measured on the same scale, and we normalized them using Min-Max method.
 
 **Outlier Management**\
 Outlier management was also a key consideration. We carefully analyzed price and square footage for outliers, employing strategies such as capping or removal to mitigate their impact. This approach was critical for maintaining the dataset's quality, ensuring that our models learned from representative trends rather than being influenced by extreme values.
 
 **Data Types Correction**\
-Ensuring all columns are of the correct data type is a priority, including accurately converting boolean fields and validating the consistency of numerical fields.
+Ensuring all columns are of the correct data type is a priority, including accurately converting boolean fields and validating the consistency of numerical fields. The time column is one of them; the values in the column were in epoch time, and we converted them into python datetime object for readability and easier processing.
 
 This preprocessing strategy ensures our dataset is primed for analysis and detailed exploration (including modeling), focusing on cleanliness, structure, and readiness for in-depth exploration. It lays the groundwork for robust and insightful data-driven models and findings.
 
