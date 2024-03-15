@@ -310,6 +310,7 @@ Sinclair Lim (Writer): Mainly contributed to README, and also contributed to dir
 Khyat Doshi (Writer): Contributed to README. Additionally, presented data exploration and some graphs <br>
 Rohan Duvur: (Code writer & reviewer); mainly contributed code for model 2 along with its section in the final writeup. Some annotations for preprocessing. <br>
 Oleg Bychenkov (Coding, writer): Coding for data exploration/preprocessing, created the graphs and analysis for model 1. <br>
+Harry Tang (Code writer & Writer): Contributed to some parts of model 1 and wrote the Discussion portion of the final writeup. <br>
 
 Our project can be found here:
 <a target="_blank" href="https://colab.research.google.com/github/Daniel-Tran3/CSE_151A_Project/blob/main/CSE151A_Group_Project.ipynb">
