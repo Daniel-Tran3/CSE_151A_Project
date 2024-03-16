@@ -48,11 +48,14 @@ This preprocessing strategy ensures our dataset is primed for analysis and detai
 Our first model, which was to be a regression model used in our later two models, was relatively simple and did not involve as many steps
 as later models did.
 
+We begin by applying tthe above preprocessing steps to clean our original dataset, and then dropping the "time" feature (as we decided it would be too difficult to encode). Then, we separate the columns into the input features (all columns but price) and output feature (price).
 To construct our regression model, we used hyperparameter tuning with the following hyperparameters: number of units per hidden layer, activation
 function (on every layer except the output layer), and optimizer. 
 Using RandomSearch on the activation functions and the number of nodes per hidden layer to find the optimal hyperparameters, we found an optimal model that had 2 hidden layers with 24 nodes each, with the ReLu activation function. Then we trained the model over 100 epochs, tracking and
 graphing the loss and validation loss (measured using MSE) over all 100 epochs. We also compared our model's predicted prices to the true prices
-in various fitting graphs, as shown in the "Results" section.
+in various fitting graphs, as shown in the "Results" section. These fitting graphs plot both the predictions and the actual data points 
+using number of bedrooms, number of bathrooms, and area in square feet against price (1 set of graphs for each input feature) and 3 graphs 
+per set (for training, testing, and validation data).
 
 The code for this model can be found here: <a target="_blank" href="https://colab.research.google.com/github/Daniel-Tran3/CSE_151A_Project/blob/main/Model_1.ipynb">
 <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
@@ -60,7 +63,7 @@ The code for this model can be found here: <a target="_blank" href="https://cola
 
 ### Model 2
 
-Since we want to use our first model to make the distinction between fair and unfair monthly rents, we load that model along with out cleaned dataset. We take a subset of the data that doesn't include the price and time columns and make price predcitions for every apartment in the dataset. We create a new dataframe with these price predictions and ground truth prices. We made the choice to classify apartments with a listed monthly rent that is 30% more expensive than the predicted price as unfair (otherwise it is a fair price). These new labels are used to train the second model.
+Since we want to use our first model to make the distinction between fair and unfair monthly rents, we load that model along with out cleaned dataset. We take a subset of the data that doesn't include the price and time columns and make price predictions for every apartment in the dataset. We create a new dataframe with these price predictions and ground truth prices. We made the choice to classify apartments with a listed monthly rent that is 30% more expensive than the predicted price as unfair (otherwise it is a fair price). These new labels are used to train the second model.
 
 A random sample of 5 rows from this data without the hundreds of one-hot encoded features is shown below.
 
@@ -160,11 +163,16 @@ Then, we tried to analyze top 100 features that contributes most to the classifi
 
 However, feature selections was later abandoned since selecting features takes much more time to train (way more than if we just fit entire features into SVM).
 
-We trained two SVM: linear and RBF.
+We initially constructed and fit two SVM: linear and RBF.
 
 Using the linear kernel gave highly optimal results, to the point where we decided any further tuning was unnecessary.
 
 RBF, on the other hand, was not that good. Thus, we applied hp tuning to it using GridSearchCV. By tuning two hp C and gamma, we successfully improved its accuracy to roughly the same level of linear.
+
+To determine the quality of the models, we printed the classification reports of each model's output on training, testing, and validation data.
+
+We proceeded to use K-fold cross-validation and plot the precision, recall, and accuracy of these approaches, plotting both testing and training
+on the same graph for comparison (1 graph for each metric).
 
 The code for this third model can be found here: <a target="_blank" href="https://colab.research.google.com/github/Daniel-Tran3/CSE_151A_Project/blob/main/Model3.ipynb">
 <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
